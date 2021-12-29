@@ -1,13 +1,13 @@
-# Alpine because it's lighter
+##discovery-service
+
+FROM maven as build
+WORKDIR /app
+COPY . .
+RUN mvn install
+
 FROM openjdk:8-jdk-alpine
-MAINTAINER Wendell Adriel <wendelladriel.ti@gmail.com>
-
-# Set ENV variables
 ENV PORT=8761
-
-# Add JAR file and run it as entrypoint
-ADD target/discovery-service.jar app.jar
-ENTRYPOINT ["java", "-jar", "/app.jar"]
-
-# Expose the port
+WORKDIR /app
+COPY --from=build /app/target/discovery-service.jar /app
+ENTRYPOINT ["java", "-jar", "discovery-service.jar"]
 EXPOSE 8761
