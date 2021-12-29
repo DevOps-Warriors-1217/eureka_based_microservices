@@ -1,0 +1,6 @@
+docker run -it -p 8761:8761 -e LOCAL_HOST=54.163.229.121 --network="host" --name discovery discovery
+docker run -it -p 8765:8765 -e LOCAL_HOST=54.163.229.121 --network="host" --name api api
+docker run -it -p 8081:8081 -e LOCAL_HOST=54.163.229.121 --network="host" --name author author
+docker run -it -p 9081:8081 -e LOCAL_HOST=54.163.229.121  --name author2 author
+docker run -it -p 8080:8080 -e LOCAL_HOST=54.163.229.121 --network="host" --name article article
+docker run -it -p 9080:8080 -e LOCAL_HOST=54.163.229.121  --name article2 article

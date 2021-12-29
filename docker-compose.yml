@@ -1,0 +1,63 @@
+version: "3"
+
+services:
+  # DISCOVERY SERVICE
+  discovery:
+    network_mode: host
+    build:
+      context: ./discovery-service
+      dockerfile: Dockerfile
+    ports:
+      - 8761:8761
+
+  # API GATEWAY
+  gateway:
+    network_mode: host
+    build:
+      context: ./api-gateway
+      dockerfile: Dockerfile
+    ports:
+      - 8765:8765
+    depends_on:
+      - discovery
+  
+  # SERVICES
+  articles:
+    network_mode: host
+    build:
+      context: ./article-service
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    depends_on:
+      - discovery
+
+  articles_two:
+    network_mode: host
+    build:
+      context: ./article-service
+      dockerfile: Dockerfile
+    ports:
+      - 9080:8080
+    depends_on:
+      - discovery
+
+  authors:
+    network_mode: host
+    build:
+      context: ./author-service
+      dockerfile: Dockerfile
+    ports:
+      - 8081:8081
+    depends_on:
+      - discovery
+
+  authors_two:
+    network_mode: host
+    build:
+      context: ./author-service
+      dockerfile: Dockerfile
+    ports:
+      - 9081:8081
+    depends_on:
+      - discovery

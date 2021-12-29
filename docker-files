@@ -1,0 +1,71 @@
+##api-gateway
+
+FROM maven as build
+WORKDIR /app
+COPY . .
+RUN mvn install
+
+
+
+FROM openjdk:8-jdk-alpine
+ENV PORT=8765
+ENV DISCOVERY_URL="http://${LOCAL_HOST}:8761"
+WORKDIR /app
+COPY --from=build /app/target/api-gateway.jar /app
+ENTRYPOINT ["java", "-jar", "api-gateway.jar"]
+EXPOSE 8765
+
+
+
+##article-service
+
+FROM maven as build
+WORKDIR /app
+COPY . .
+RUN mvn install
+
+
+FROM openjdk:8-jdk-alpine
+ENV PORT=8080
+ENV DISCOVERY_URL="http://${LOCAL_HOST}:8761"
+WORKDIR /app
+COPY --from=build /app/target/article-service.jar /app
+ENTRYPOINT ["java", "-jar", "article-service.jar"]
+EXPOSE 8080
+
+
+
+
+
+##author-service
+
+FROM maven as build
+WORKDIR /app
+COPY . .
+RUN mvn install
+
+
+FROM openjdk:8-jdk-alpine
+MAINTAINER Wendell Adriel <wendelladriel.ti@gmail.com>
+ENV PORT=8081
+ENV DISCOVERY_URL="http://${LOCAL_HOST}:8761"
+WORKDIR /app
+COPY --from=build /app/target/author-service.jar /app
+ENTRYPOINT ["java", "-jar", "author-service.jar"]
+EXPOSE 8081
+
+
+
+##discovery-service
+
+FROM maven as build
+WORKDIR /app
+COPY . .
+RUN mvn install
+
+FROM openjdk:8-jdk-alpine
+ENV PORT=8761
+WORKDIR /app
+COPY --from=build /app/target/discovery-service.jar /app
+ENTRYPOINT ["java", "-jar", "discovery-service.jar"]
+EXPOSE 8761
