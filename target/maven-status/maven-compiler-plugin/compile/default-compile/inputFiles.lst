@@ -1,4 +1,0 @@
-/mnt/e/eureka_based_microservices_k8/eureka_microservices_code/api-gateway/src/main/java/br/com/codeshare/microservices/gateway/configuration/HystrixFallbackConfiguration.java
-/mnt/e/eureka_based_microservices_k8/eureka_microservices_code/api-gateway/src/main/java/br/com/codeshare/microservices/gateway/configuration/RibbonConfiguration.java
-/mnt/e/eureka_based_microservices_k8/eureka_microservices_code/api-gateway/src/main/java/br/com/codeshare/microservices/gateway/Application.java
-/mnt/e/eureka_based_microservices_k8/eureka_microservices_code/api-gateway/src/main/java/br/com/codeshare/microservices/gateway/configuration/WebConfiguration.java
