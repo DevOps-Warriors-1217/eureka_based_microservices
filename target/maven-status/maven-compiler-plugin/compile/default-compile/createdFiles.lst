@@ -1,0 +1,6 @@
+br/com/codeshare/microservices/gateway/configuration/HystrixFallbackConfiguration.class
+br/com/codeshare/microservices/gateway/configuration/HystrixFallbackConfiguration$1.class
+br/com/codeshare/microservices/gateway/Application.class
+br/com/codeshare/microservices/gateway/configuration/WebConfiguration.class
+br/com/codeshare/microservices/gateway/configuration/RibbonConfiguration.class
+br/com/codeshare/microservices/gateway/configuration/HystrixFallbackConfiguration$1$1.class
